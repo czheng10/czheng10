@@ -1,3 +1,8 @@
+# Cindy Zheng (partners: Julianna & Ruoshui )
+# SoftDev
+# K05 — Teamwork, but Better This Time: Printing a random student name from KREWES
+# 2020-09-30
+
 import random
 
 KREWES = {

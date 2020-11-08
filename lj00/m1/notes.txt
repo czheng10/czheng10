@@ -1,7 +1,7 @@
 Team Nine2One (Cindy Zheng, Julianna Yu, Ruoshui Mao)
 SofDev
 LJ00--Le Voyage de Learnination avec Mongo, Première Phase
-Summary: notes from chapter 1 of MongoDB course
+Summary: Notes from Chapter 1 of MongoDB 
 2020-11-8
 
 Database- a structured way to store and access data

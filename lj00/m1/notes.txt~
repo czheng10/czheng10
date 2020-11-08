@@ -1,0 +1,12 @@
+Team Nine2One (Cindy Zheng, Julianna Yu, Ruoshui Mao)
+SofDev
+LJ00--Le Voyage de Learnination avec Mongo, Première Phase
+Summary: notes from chapter 1 of MongoDB course
+2020-11-8
+
+Database- a structured way to store and access data
+NoSQL Database- describe data store that does not use related table of data, or rows and columns
+
+NoSQL documentDB- data in MongoDB stored in documents, which are stored in collections
+
+Collection - an organized store of documents in MongoDB usually with common fields between documents. There can be many collections per database and many documents per collection.

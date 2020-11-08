@@ -1,0 +1,35 @@
+Team Nine2One (Cindy Zheng, Julianna Yu, Ruoshui Mao)
+SofDev
+LJ00--Le Voyage de Learnination avec Mongo, Première Phase
+Summary: notes from chapter 1 of MongoDB course
+2020-11-8
+
+Database- a structured way to store and access data
+NoSQL Database- describe data store that does not use related table of data, or rows and columns
+
+NoSQL documentDB- data in MongoDB stored in documents, which are stored in collections
+
+Collection- an organized store of documents in MongoDB usually with common fields between documents. There can be many collections per database and many documents per collection.
+
+Document- a way to organize and store data as a set of field-value pairs.
+
+Field- a unique identifier for a datapoint.
+
+Value- data related to a given identifier.
+
+Documents >> Collections >> Database
+
+Atlas cloud database- fully managed database built for various applications, database as a service
+  Manage cluster creation
+  Run and manintain database deployment
+  Use cloud service provider of your choice
+  Experiment with new tools and features
+  Is a MongoDB product and has many tools and services within it that are built specifically for MongoDB Database
+Cluster- group of servers that store your data.
+
+Replica set- connected MongoDB instances that store the same data
+
+Instance- single machine locally or in the cloud, running a certain software
+
+This setup ensures that data will remain intact/available even if one machine in the replica set were to fail.
+Single clusters in Atlas automatically configure as a replica set

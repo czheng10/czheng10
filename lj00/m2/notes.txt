@@ -1,5 +1,78 @@
 Team Nine2One (Cindy Zheng, Julianna Yu, Ruoshui Mao)
 SofDev
 LJ00--Le Voyage de Learnination avec Mongo, Première Phase
-Summary: Notes from Chapter 2 of MongoDB 
+Summary: Notes from Chapter 2 of MongoDB
 2020-11-8
+
+MongoDB Documents are viewed and updated in JSON
+JSON- JavaScript Standard Object Notation
+  Format:
+    Start and end with curly brackets {}
+    Separate each key and value with a colon :
+    Separate each key:value pair with a comma, and
+    "keys" must be surrounded by quotation marks ""
+      In MongoDB, "keys" are called "fields"
+
+  PROS: Friendly, Readable, Familiar
+  CONS: Text-based, Space-consuming, Limited number of basic data types
+
+Sub-Document- document as a value within another documents
+
+BSON- Binary JSON
+  Used on MongoDB
+  Bridges the gap between binary representation and JSON format + make up for JSON CONS
+  Optimized for speed, space, and flexibility
+  High performance, general-purpose focus
+  Readability is Machine only, unlike JSON, which can be read by humans
+  More Data types supported, like Date and Raw Binary
+
+MongoDB stores in BSON, but is viewed in JSON
+
+Importing and Exporting: JSON VS BSON
+  Store data/ backup cloud data locally: BSON
+  Export to a different system: BSON
+  Export to a local machine/ viewing it: JSON
+
+  JSON Commands:
+    mongoimport --uri "<Atlas Cluster URI>"
+                --drop=<filename>.json
+      Imports data in JSON
+    mongoexport --uri "<Atlas Cluster URI>"
+                --collection=<collection name>
+                --out=<filename>.json
+      Export data in JSON
+
+  BSON Commands:
+    mongorestore --uri "<Atlas Cluster URI>"
+               --drop dump
+      Imports data in BSON dump
+    mongodump --uri "<Atlas Cluster URI>"
+      Export data in BSON
+
+URI string:
+  Uniform Resource identifier
+  srv- establishes a secure connection between your application and MongDB instance
+    mongodb+srv://user:password@clusterURI.mongodb.net/database
+
+Namespace- concatenation of the database name and collection name
+
+Query a collection:
+  -Atlas UI provides us with Data Explorer
+  -Query must use valid JSON
+  -Navigate to filter
+  -Follow query format: {"filter":"example", "filter2":"example2"}
+
+  find() Command:
+    -admin and local is a default database that does administrative tasks
+    -show dbs comands show databases that are in the cluster
+    -use sample_training command to specify database
+    -show collections reveal the collections in this database
+    -db.[collection_name].find({"filter":"example"})
+    -displays first 20 Documents
+    -it command iterates through a cursur
+    -cursor is a pointer to a result set of a query
+    -pointer is a direct address to the memory location
+    -ending .find() with .count() with keep a count of how many documents match your request
+    -.find({}) without a query prints the first 20 documents with no particular order
+  to clean up how the documents are printed in shell:
+    -end your .find() with .pretty()

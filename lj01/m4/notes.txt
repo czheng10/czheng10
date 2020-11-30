@@ -1,0 +1,5 @@
+Team Nine2One (Cindy Zheng, Julianna Yu, Ruoshui Mao)
+SofDev
+LJ01--Le Voyage de Learnination avec Mongo, Deuxième Phase
+Summary: Notes from Chapter 4 of MongoDB
+2020-11-29

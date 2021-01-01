@@ -3,3 +3,72 @@ SofDev
 LJ01--Le Voyage de Learnination avec Mongo, Deuxième Phase
 Summary: Notes from Chapter 4 of MongoDB
 2020-11-29
+
+Query Operators-Comparisons
+  -MQL Operators
+    -Update Operators
+      -Modify data in the database
+      -EX. $inc, $set, $unset
+  -Query Operators
+    -Additional ways to locate data in database
+  -$ symbol
+    -Precedes MQL Operators, Aggregation pipeline stages
+    -Allows Access to Field Values
+  -Comparison Operators
+    -Find data within range
+    -$eq
+      -Equal to
+      -Default when operator not specified
+    -$neq
+      -Not Equal to
+    -$gt
+      -Greater than
+    -$lt
+      -Less than
+    -$gte
+      -Greater than or Equal to
+    -$lte
+      -Less than or Equal to
+  -SAME SYNTAX: {<field>: [{statement1}, {statement2},...]}
+
+Query Operators- Logic
+  -More granular in search for data
+  -{<operator>:[{statement1}, {statement2},...]}
+    -$and
+      -Match all specified query clauses
+      -default operator when operator not specified
+      -Necessary when including same operator more than once in a query
+    -$or
+      -at least one of query is matched
+    -$nor
+      -fail to match both given clauses
+    -$not
+      -negates query requirement
+      -{$not:{statement}}
+
+Expressive Query Operator
+  -syntax --> {$expr: {<expression>}}
+  -allows using aggregation expressions within the query language
+  -allows using variables and conditional statements
+  -$ addresses field value as well
+
+Array Operators
+  -$push
+    -add an element to an array and turns a field into an array field if it was previously a different type
+  -ORDER MATTERS IN AN ARRAY
+  -Syntax --> {<array field>:{“$size”:<number>}}
+    -returns cursor with all documents where specified array firled is exactly the given length
+  -Syntax --> {<array field>:{“$all”:<number>}}
+    -returns cursor with all documents where specified array field contains ALL given elements REGARDLESS OF ORDER
+
+Projections
+  -Syntax --> db.<collection>.find({<query>}, {<projections>})
+    - Inside <projections> is field and values
+      -EX. <field1>:0, <field2>:0
+      -1: include the field
+      -0: exclude the field
+      -DO NOT combine 1 and 0s in projections
+      -Syntax --> {<field>:{“$eleMatch”: {<field>: <value> }}}
+        -Matches documents that contain an array field with at least 1 element that matches query criteria,
+        OR
+        -Projects only array elements with at least one element that matches the specified criteria

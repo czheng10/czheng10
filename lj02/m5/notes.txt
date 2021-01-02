@@ -1,0 +1,77 @@
+Team Nine2One (Cindy Zheng, Julianna Yu, Ruoshui Mao)
+SofDev
+LJ02: Le Voyage de Learnination avec Mongo, Troisième Phase — MongoDB Chapters 5 & 6
+Summary: Notes from Chapter 5 of MongoDB
+2021-1-1
+
+Aggregation Framework
+  -another way to query data
+  -Syntanx --> db.listingsAndReviews.aggregate([{ "$match": {"amenities": "Wifi" } { "$project": { "price": 1,  "address": 1, "_id": 0 }}]).pretty()
+    -Order of elements in pipeline MATTERS
+      -actions are executed in the order they are listed
+    -$match
+      -keeps only amenities with WiFi (filters out all without)
+    -$project
+      -filters all fields that are NOT price or address from each document (finer filter than $match)
+  -Can perform other operations besides finding and projecting data, like calculating.
+  -Aggregate lets you compute/reshape/reorganize data, while find can only filter/update data
+  -Data exists within the pipeline
+    -does NOT inherently change original data
+  -$group
+    -operator that takes the incoming stream of data, and siphons it into multiple distinct reservoirs
+    -syntax -->
+      {$group:
+        {
+          _id : <expression>, // Group by Expression
+          <field1> : {<accumulator1> : <expression1>}
+          }
+  -Non-filtering stages DO NOT modify the original data. They work with data in the cursor.
+
+Sort() and Limit () Methods
+  -cursor methods
+    -not applied to the data stored in the database
+    -instead applied to the result set that lives in cursor.
+    -Other EX: pretty() and count()
+  -Syntax --> cursor.sort(), cursor.limit()
+  -sort()
+    -sorts data by one or more fields based on the criteria we give.
+    -Can sort based on increasing or decreasing order.
+      -Increasing: db.zips.find().sort({ "pop": 1 }).limit(1)
+      -Decreasing: db.zips.find().sort({ "pop": -1 }).limit(1)
+  -limit()
+    -looking for a specific number of results.
+  -When used together, MongoDB always assumes you use sort() first, then limit().
+    -cursor.limit().sort() and cursor.sort().limit() will return the same thing
+
+Indexes
+  -Index
+    -special data structure that stores small portion of collection’s data set in an easy to traverse form
+    -it optimized queries
+  -EX:
+    -a single field index: db.trips.createIndex({ "birth year": 1 })
+      -Creates index on the birth year field in increasing order
+      -MongoDB doesn’t have to look at every document to find the result.
+  -a compound index: db.trips.createIndex({ "start station id": 476, "birth year": 1 })
+      -An index on multiple fields
+  -Avoids sorting
+    -requires memory and is time consuming
+
+Data Modeling
+  -Data Modeling: way to organize fields in a document to support your application performance and querying capabilities
+  -data stored in the way that it is used
+    -must consider what you are storing as well as how it will be queried
+      -who is using the application?
+    -data that is regularly queried together should be stored together
+  -evolving application implies an evolving data model
+
+Upsert
+  -Everything in MQL used to locate a document in a collection can also be used to modify this document.
+  -Upsert: a hybrid of update and insert, should only be used when needed
+    -Syntax --> db.collection.updateOne({<query>}, {<update>}, {“upsert” : true})
+  -False on default.
+  -If there is a matched document, an update will occur.
+    -if no match, then a new document is inserted.
+    - upsert: true --> conditional updates
+    - upsert: false —-> update an existing document, insert a brand new document
+  -Must make sure that {<update>} is enough to create a new document
+    - Documents should have same/similar form to other documents in collection
